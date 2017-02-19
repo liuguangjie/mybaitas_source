@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mybatis.dao.UserMapper">
+
+    <!-- enable  namespace  cache -->
+    <!-- attr
+     flushInterval=""   ms
+     -->
+    <cache type="EhcacheCache" />
+
+    <resultMap id="userResult" type="user">
+        <id column="id_" property="id"/>
+        <result column="username_" property="username" />
+        <result column="sex_" property="sex" />
+    </resultMap>
+
+    <!--<select id="findUserCount" parameterType="QueryVo" resultType="int">
+        select count(*) from user
+        <where>
+            <if test="userCustom!=null">
+                <if test="userCustom.sex!=null and userCustom.sex!=''" >
+                    and sex=#{userCustom.sex}
+                </if>
+                <if test="userCustom.username!=null and userCustom.username!=''">
+                    and username like '%${userCustom.username}%'
+                </if>
+            </if>
+        </where>
+    </select>-->
+
+    <select id="findUserResultMap" parameterType="QueryVo" resultMap="userResult">
+        select id as id_ ,username as username_ ,sex as sex_ from user
+        <where>
+            <!--<include refid="query_where" />-->
+            <!--<if test="userCustom!=null">
+                <if test="userCustom.sex!=null and userCustom.sex!=''" >
+                    and sex=#{userCustom.sex}
+                </if>
+                <if test="userCustom.username!=null and userCustom.username!=''">
+                    and username like '%${userCustom.username}%'
+                </if>
+            </if>-->
+            <if test="ids!=null" >
+                <foreach collection="ids" item="itemId" open="and id in(" separator="," close=")">
+                    ${itemId}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="findUserById" resultType="user" parameterType="java.lang.Integer">
+        select * from user where id=#{value}
+    </select>
+
+    <update id="updateUser" parameterType="User">
+        update user set username=#{username},birthday=#{birthday},sex=#{sex},address=#{address} where id=#{id}
+    </update>
+
+    <sql id="query_where">
+        <if test="userCustom!=null">
+            <if test="userCustom.sex!=null and userCustom.sex!=''" >
+                and sex=#{userCustom.sex}
+            </if>
+            <if test="userCustom.username!=null and userCustom.username!=''">
+                and username like '%${userCustom.username}%'
+            </if>
+        </if>
+        <if test="ids!=null" >
+            <foreach collection="ids" item="itemId" open="and id in(" separator="," close=")">
+                ${itemId}
+            </foreach>
+        </if>
+    </sql>
+
+
+</mapper>

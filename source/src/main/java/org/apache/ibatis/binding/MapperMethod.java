@@ -175,12 +175,12 @@ public class MapperMethod {
     private final SqlCommandType type;
 
     public SqlCommand(Configuration configuration, Class<?> mapperInterface, Method method) throws BindingException {
-      String statementName = mapperInterface.getName() + "" + method.getName();
+      String statementName = mapperInterface.getName() + "." + method.getName();
       MappedStatement ms = null;
       if (configuration.hasStatement(statementName)) {
         ms = configuration.getMappedStatement(statementName);
       } else if (!mapperInterface.equals(method.getDeclaringClass().getName())) { // issue #35
-        String parentStatementName = method.getDeclaringClass().getName() + "" + method.getName();
+        String parentStatementName = method.getDeclaringClass().getName() + "." + method.getName();
         if (configuration.hasStatement(parentStatementName)) {
           ms = configuration.getMappedStatement(parentStatementName);
         }

@@ -10,11 +10,13 @@
         [ resultSetType=[ FORWARD_ONLY|SCROLL_INSENSITIVE|SCROLL_SENSITIVE ] ]
 
      -->
-    <select id="findUserById" parameterType="java.lang.Integer" resultType="user">
+    <!--<select id="findUserById" parameterType="java.lang.Integer" resultType="user">
         SELECT * FROM user where id=#{value}
+    </select>-->
+
+    <select id="findUserList" parameterType="QueryVo" resultType="UserCustom">
+        select * from user where sex=${userCustom.sex} and username like '%${userCustom.username}%'
     </select>
-
-
 
     <!--<insert id="addUser" parameterType="cn.mybatis.domain.User">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
