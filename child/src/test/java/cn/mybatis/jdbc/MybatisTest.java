@@ -22,7 +22,7 @@ public class MybatisTest {
     @Test
     public void testFist() throws IOException {
         // build  inputStream
-        InputStream inputStream = Resources.getResourceAsStream("mybatis-comfig.xml");
+        InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
 
         //build SqlSessionFactory
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
@@ -31,7 +31,7 @@ public class MybatisTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         // query database  Object
-        User user = sqlSession.selectOne("first.findUserById", 1);
+        User user = sqlSession.selectOne("test.findUserById", 1);
 
         System.out.println(user);
         sqlSession.close();
@@ -41,7 +41,7 @@ public class MybatisTest {
     @Test
     public void testFindUserByName() throws IOException {
 
-        InputStream inputStream = Resources.getResourceAsStream("mybatis-comfig.xml");
+        InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
 
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
@@ -57,7 +57,7 @@ public class MybatisTest {
     @Test
     public void testInsertUser() throws IOException {
 
-        InputStream inputStream = Resources.getResourceAsStream("mybatis-comfig.xml");
+        InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
 
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
@@ -79,7 +79,7 @@ public class MybatisTest {
     @Test
     public void testUpdatetUser() throws IOException {
 
-        InputStream inputStream = Resources.getResourceAsStream("mybatis-comfig.xml");
+        InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
 
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
@@ -101,7 +101,7 @@ public class MybatisTest {
     //delete  user By id
     @Test
     public void testDeleteUser() throws Exception {
-        InputStream inputStream = Resources.getResourceAsStream("mybatis-comfig.xml");
+        InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
         SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession=sqlSessionFactory.openSession();
         sqlSession.delete("first.deleteUser",26);

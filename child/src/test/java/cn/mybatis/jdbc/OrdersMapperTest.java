@@ -28,7 +28,7 @@ public class OrdersMapperTest {
         // 创建sqlSessionFactory
 
         // mybatis配置文件
-        String resource = "mybatis-comfig.xml";
+        String resource = "mybatis-config.xml";
         // 得到配置文件流
         InputStream inputStream = Resources.getResourceAsStream(resource);
 

@@ -35,8 +35,8 @@
     </environments>
     <mappers>
         <!--<mapper resource="mapper/userMapper.xml"/>-->
-        <!--<mapper class="cn.mybatis.dao.UserDao" />-->
-        <mapper class="cn.mybatis.dao.UserMapper" />
-        <mapper class="cn.mybatis.dao.OrdersMapperCustom" />
+        <mapper class="cn.mybatis.dao.UserDao" />
+        <!--<mapper class="cn.mybatis.dao.UserMapper" />
+        <mapper class="cn.mybatis.dao.OrdersMapperCustom" />-->
     </mappers>
 </configuration>

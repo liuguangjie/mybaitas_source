@@ -41,7 +41,7 @@ public class XPathTest {
         this.xpath = pathFactory.newXPath();
 
         // create  document
-        InputStream in=ClassLoader.getSystemClassLoader().getResourceAsStream("mybatis-comfig.xml");
+        InputStream in=ClassLoader.getSystemClassLoader().getResourceAsStream("mybatis-config.xml");
         InputSource inputSource=new InputSource(in);
         Document document = null;
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -80,7 +80,7 @@ public class XPathTest {
 
     @Test
     public void testXPathParser(){
-        InputStream in=ClassLoader.getSystemClassLoader().getResourceAsStream("mybatis-comfig.xml");
+        InputStream in=ClassLoader.getSystemClassLoader().getResourceAsStream("mybatis-config.xml");
         XPathParser xPathParser=new XPathParser(in, true, null, new XMLMapperEntityResolver());
 
         XNode xNode=xPathParser.evalNode("/configuration");

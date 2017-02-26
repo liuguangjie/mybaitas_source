@@ -30,7 +30,7 @@ public class SourceTest {
     public void testBase() throws Exception {
         String environment = null;
         Properties properties = null;
-        InputStream inputStream = Resources.getResourceAsStream("mybatis-comfig.xml");
+        InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
 
         /**
          * 这行代码初始化如下
@@ -52,11 +52,11 @@ public class SourceTest {
         SqlSessionFactory sqlSessionFactory = new DefaultSqlSessionFactory(configuration);
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        /*User user = sqlSession.selectOne("cn.mybatis.dao.UserDao.findUserById", 1);
-        System.out.println(user);*/
-        UserDao userDao=sqlSession.getMapper(UserDao.class);
-        User user=userDao.findUserById(1);
+        User user = sqlSession.selectOne("test.findUserById", 1);
         System.out.println(user);
+        /*UserDao userDao=sqlSession.getMapper(UserDao.class);
+        User user=userDao.findUserById(1);
+        System.out.println(user);*/
         //User user = new User();
         //user.setAddress("shanghai");
         //user.setBirthday(new Date());
@@ -74,7 +74,7 @@ public class SourceTest {
     public void testFindUserList() throws Exception{
         String environment = null;
         Properties properties = null;
-        InputStream inputStream = Resources.getResourceAsStream("mybatis-comfig.xml");
+        InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
         XMLConfigBuilder parser = new XMLConfigBuilder(inputStream, environment, properties);
         Configuration configuration = parser.parse();
         SqlSessionFactory sqlSessionFactory = new DefaultSqlSessionFactory(configuration);
@@ -94,7 +94,7 @@ public class SourceTest {
     public SqlSession getSqlSession()throws Exception{
         String environment = null;
         Properties properties = null;
-        InputStream inputStream = Resources.getResourceAsStream("mybatis-comfig.xml");
+        InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
         XMLConfigBuilder parser = new XMLConfigBuilder(inputStream, environment, properties);
         Configuration configuration = parser.parse();
         SqlSessionFactory sqlSessionFactory = new DefaultSqlSessionFactory(configuration);

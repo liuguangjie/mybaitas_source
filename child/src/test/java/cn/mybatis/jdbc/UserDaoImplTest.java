@@ -24,7 +24,7 @@ public class UserDaoImplTest {
     private SqlSessionFactory sqlSessionFactory=null;
     @Before
     public void createSqlSessionFactory() throws IOException {
-        InputStream inputStream = Resources.getResourceAsStream("mybatis-comfig.xml");
+        InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
         sqlSessionFactory=new SqlSessionFactoryBuilder().build(inputStream);
     }
 
